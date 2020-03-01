@@ -1,0 +1,4 @@
+main: de.linzn.homeWebApp.HomeWebAppPlugin
+name: home-webApp
+version: ${project.version}
+depend: [heating-status, local-weather, home-devices, trash-calender, system-chain]
