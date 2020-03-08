@@ -11,8 +11,11 @@
 
 package de.linzn.homeWebApp.api.postRequests;
 
+import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
 import de.azcore.azcoreRuntime.AppLogger;
+import de.azcore.azcoreRuntime.taskManagment.operations.defaultOperations.AZCoreRestartOperation;
 import de.azcore.azcoreRuntime.utils.Color;
+import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
@@ -38,8 +41,8 @@ public class AZCoreControl implements IResponseHandler {
     }
 
     private boolean executeCommand(String command) {
-        //AZCoreRuntimeApp.getInstance().getScheduler().runTaskSingleOperation(OperationRegister.getOperation("evy_restart"));
-        //todo fix restart
+        AZCoreRestartOperation azCoreRestartOperation = new AZCoreRestartOperation();
+        AZCoreRuntimeApp.getInstance().getScheduler().runTask(HomeWebAppPlugin.homeWebAppPlugin, azCoreRestartOperation);
         return command.equalsIgnoreCase("restart");
     }
 }
