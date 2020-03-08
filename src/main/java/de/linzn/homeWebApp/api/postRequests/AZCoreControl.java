@@ -41,8 +41,16 @@ public class AZCoreControl implements IResponseHandler {
     }
 
     private boolean executeCommand(String command) {
+        if (command.equalsIgnoreCase("restart")) {
+            restartCommand();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void restartCommand() {
         AZCoreRestartOperation azCoreRestartOperation = new AZCoreRestartOperation();
         AZCoreRuntimeApp.getInstance().getScheduler().runTask(HomeWebAppPlugin.homeWebAppPlugin, azCoreRestartOperation);
-        return command.equalsIgnoreCase("restart");
     }
 }
