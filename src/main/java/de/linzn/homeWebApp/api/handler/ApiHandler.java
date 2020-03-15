@@ -85,7 +85,6 @@ public class ApiHandler implements HttpHandler {
     private void registerSubHandlers() {
         /* JQuery requests */
         this.subHandlers.put("div_heater-temp.html", new DivHeaterTemperature());
-        this.subHandlers.put("div_heater-notifies.html", new DivHeaterNotifies());
         this.subHandlers.put("div_network-ping.html", new DivNetworkPing());
         this.subHandlers.put("div_weather.html", new DivWeather());
         this.subHandlers.put("div_trash.html", new DivTrash());

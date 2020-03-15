@@ -36,8 +36,6 @@ public class LandscapeFrontDashboard implements IResponseHandler {
 
         webAppHTML.addEntry(new DefaultFrame("Heizung", "heater-temp", true, apiServer + "/div_heater-temp.html", 5000), 0, 0);
         webAppHTML.addEntry(new DefaultFrame("Wetter", "weather", true, apiServer + "/div_weather.html", 15000), 0, 1);
-        webAppHTML.addEntry(new DefaultFrame("Müllabfur", "trash", true, apiServer + "/div_trash.html", 20000), 0, 2);
-
         String customCode = "<div id=\"clock\">\n" +
                 "    <div class=\"clockcenter\">\n" +
                 "        <h5><div id=\"date\"></div></h5>\n" +
@@ -52,14 +50,11 @@ public class LandscapeFrontDashboard implements IResponseHandler {
         HalfFrame halfFrame2 = new HalfFrame("Internet", "network-ping", true, apiServer + "/div_network-ping.html", 5000);
         webAppHTML.addEntry(new DefaultFrame(halfFrame1, halfFrame2), 0, 3);
 
-
-        webAppHTML.addEntry(new DefaultFrame("Meldungen", "heater-notifies", true, apiServer + "/div_heater-notifies.html", 5000), 1, 0);
+        webAppHTML.addEntry(new DefaultFrame("Müllabfur", "trash", true, apiServer + "/div_trash.html", 20000), 1, 0);
 
         halfFrame1 = new HalfFrame("Küche", "light-kitchen", true, apiServer + "/div_light-kitchen.html", 1500);
         halfFrame2 = new HalfFrame("Aquarium", "light-aquarium", true, apiServer + "/div_light-aquarium.html", 1500);
         webAppHTML.addEntry(new DefaultFrame(halfFrame1, halfFrame2), 1, 1);
-
-        //webAppHTML.addEntry(new DefaultFrame("test1", "test1", false, "", 0), 1, 2);
 
         webAppHTML.addEntry(new DefaultFrame(new MenuFrame()), 1, 3);
 

@@ -14,12 +14,14 @@ package de.linzn.homeWebApp.api.jqueryContent;
 
 import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.linzn.heatingstatus.objects.Inlet;
+import de.linzn.heatingstatus.objects.Notify;
 import de.linzn.heatingstatus.objects.Outlet;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DivHeaterTemperature implements IResponseHandler {
@@ -27,6 +29,9 @@ public class DivHeaterTemperature implements IResponseHandler {
     public IHtmlTemplate buildResponse(List<String> inputList) {
         List<Inlet> inlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getInletsList();
         List<Outlet> outlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getOutletsList();
+        List<Notify> notifies = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getNotifiesList();
+
+
         String value = "0.0";
         boolean isBurning = false;
         for (Inlet inlet : inlets) {
@@ -42,15 +47,35 @@ public class DivHeaterTemperature implements IResponseHandler {
             }
         }
 
+        List<Notify> activeNotifies = new ArrayList<>();
+
+        for (Notify notify : notifies) {
+            if (notify.isActive()) {
+                activeNotifies.add(notify);
+            }
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("<div id=\"heater-temp\">" +
-                "<h2><span aria-hidden=\"true\" class=\"fas fa-thermometer-half fs2\"></span>" + value + " °C</h2>" +
                 "<div class=\"cont\">" +
-                "<p>Wasser Temp.</p>");
+                "<h2><span aria-hidden=\"true\" class=\"fas fa-thermometer-half fs2\"></span>" + value + " °C</h2>" +
+                "<p>Warm-Wasser</p></div>");
 
-        if (isBurning) {
-            stringBuilder.append("<span aria-hidden=\"true\" class=\"fas fa-burn fs2\" style=\"color: orange;\"></span>");
+        if (!activeNotifies.isEmpty()) {
+            for (Notify notify : activeNotifies) {
+                stringBuilder.append("<div class=\"cont\">");
+                stringBuilder.append("<span aria-hidden=\"true\" class=\"fas fa-exclamation-triangle fs2\" style=\"color: red; font-size: 35px;\"></span>");
+                stringBuilder.append("<p><h1><bad><b>" + notify.getName() + "</b></bad></h1></p>");
+            }
+        } else if (isBurning) {
+            stringBuilder.append("<div class=\"cont\">");
+            stringBuilder.append("<span aria-hidden=\"true\" class=\"fas fa-burn fs2\" style=\"color: orange; font-size: 45px;\"></span>");
+            stringBuilder.append("<p>Aufheiz-Phase</p>");
+        } else {
+            stringBuilder.append("<div class=\"cont\">");
+            stringBuilder.append("<ok><span aria-hidden=\"true\" class=\"fas fa-check-circle fs2\" style=\"font-size: 45px;\"></span></ok>");
+            stringBuilder.append("<p>Schlaf-Modus</p>");
         }
         stringBuilder.append(
                 "</div>" +
