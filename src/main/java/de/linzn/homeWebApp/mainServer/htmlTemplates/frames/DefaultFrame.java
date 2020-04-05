@@ -53,8 +53,13 @@ public class DefaultFrame {
 
 
     public DefaultFrame(HalfFrame halfFrame1, HalfFrame halfFrame2) {
-        frameBuilder.append(halfFrame1.getFrame());
-        frameBuilder.append(halfFrame2.getFrame());
+        if (halfFrame1 != null) {
+            frameBuilder.append(halfFrame1.getFrame());
+        }
+        if (halfFrame2 != null) {
+            frameBuilder.append(halfFrame2.getFrame());
+        }
+
     }
 
     public DefaultFrame(MenuFrame menuFrame) {

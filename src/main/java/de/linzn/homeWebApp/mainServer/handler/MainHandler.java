@@ -21,6 +21,7 @@ import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontDashboard;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontSetting;
+import de.linzn.homeWebApp.mainServer.frontEnd.landscape.SmartPhoneNiklas;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -92,6 +93,7 @@ public class MainHandler implements HttpHandler {
 
         /* Frontend  LS*/
         this.subHandlers.put("dashboard.html", new LandscapeFrontDashboard());
+        this.subHandlers.put("niklas.html", new SmartPhoneNiklas());
         this.subHandlers.put("settings.html", new LandscapeFrontSetting());
     }
 
