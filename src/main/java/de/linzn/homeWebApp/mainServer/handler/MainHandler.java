@@ -14,14 +14,14 @@ package de.linzn.homeWebApp.mainServer.handler;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.utils.Color;
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontDashboard;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontSetting;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.SmartPhoneNiklas;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.utils.Color;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -11,26 +11,27 @@
 
 package de.linzn.homeWebApp.api.postRequests;
 
-import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.taskManagment.operations.defaultOperations.AZCoreRestartOperation;
-import de.azcore.azcoreRuntime.utils.Color;
+
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.taskManagment.operations.defaultOperations.StemRestartOperation;
+import de.stem.stemSystem.utils.Color;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class AZCoreControl implements IResponseHandler {
+public class StemControl implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
         JSONObject jsonObject = new JSONObject();
 
         String command = inputList.get(1);
-        AppLogger.debug(Color.GREEN + "[WEBAPP_API-SERVER] Post Request: AZCoreControl::" + command);
+        AppLogger.debug(Color.GREEN + "[WEBAPP_API-SERVER] Post Request: STEMControl::" + command);
 
         boolean success = executeCommand(command);
         jsonObject.put("status", success);
@@ -50,7 +51,7 @@ public class AZCoreControl implements IResponseHandler {
     }
 
     private void restartCommand() {
-        AZCoreRestartOperation azCoreRestartOperation = new AZCoreRestartOperation();
-        AZCoreRuntimeApp.getInstance().getScheduler().runTask(HomeWebAppPlugin.homeWebAppPlugin, azCoreRestartOperation);
+        StemRestartOperation stemRestartOperation = new StemRestartOperation();
+        STEMSystemApp.getInstance().getScheduler().runTask(HomeWebAppPlugin.homeWebAppPlugin, stemRestartOperation);
     }
 }

@@ -11,12 +11,13 @@
 
 package de.linzn.homeWebApp.api.postRequests;
 
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.utils.Color;
+
 import de.linzn.homeDevices.devices.DeLockSwitch;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.utils.Color;
 import org.json.JSONObject;
 
 import java.util.List;

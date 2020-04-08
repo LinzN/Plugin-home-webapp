@@ -32,7 +32,7 @@ public class LandscapeFrontSetting implements IResponseHandler {
         webAppHTML = new WebAppTemplate(2, 4);
         webAppHTML.setTitle("Settings");
 
-        webAppHTML.addEntry(new DefaultFrame("AZCORE", "azcore", true, apiServer + "/div_azcore.html", 120000), 0, 0);
+        webAppHTML.addEntry(new DefaultFrame("STEM", "stem", true, apiServer + "/div_stem.html", 120000), 0, 0);
 
         webAppHTML.addEntry(new DefaultFrame(new MenuFrame()), 1, 3);
 

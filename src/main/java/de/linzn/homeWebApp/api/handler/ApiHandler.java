@@ -14,15 +14,15 @@ package de.linzn.homeWebApp.api.handler;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.utils.Color;
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.api.jqueryContent.*;
-import de.linzn.homeWebApp.api.postRequests.AZCoreControl;
 import de.linzn.homeWebApp.api.postRequests.PostLightControl;
+import de.linzn.homeWebApp.api.postRequests.StemControl;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.utils.Color;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -91,11 +91,11 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("div_light-kitchen.html", new DivLightKitchen());
         this.subHandlers.put("div_light-aquarium.html", new DivLightAquarium());
         this.subHandlers.put("div_light-niklas.html", new DivLightNiklas());
-        this.subHandlers.put("div_azcore.html", new DivAZCore());
+        this.subHandlers.put("div_stem.html", new DivStem());
 
         /* Post requests*/
         this.subHandlers.put("post_light-control", new PostLightControl());
-        this.subHandlers.put("post_azcore-control", new AZCoreControl());
+        this.subHandlers.put("post_stem-control", new StemControl());
 
     }
 

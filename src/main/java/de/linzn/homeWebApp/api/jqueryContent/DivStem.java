@@ -18,7 +18,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.util.List;
 
-public class DivAZCore implements IResponseHandler {
+public class DivStem implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
@@ -27,11 +27,11 @@ public class DivAZCore implements IResponseHandler {
 
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"azcore\">");
+        stringBuilder.append("<div id=\"stem\">");
         stringBuilder.append("" +
                 "<div class=\"cont\">" +
-                "<button onclick=\"$.post('" + url + "/post_azcore-control/restart')\" class=\"fas fa-fire-extinguisher tbutton\"></button>" +
-                "        <p>Kill AZCore</p>" +
+                "<button onclick=\"$.post('" + url + "/post_stem-control/restart')\" class=\"fas fa-fire-extinguisher tbutton\"></button>" +
+                "        <p>Kill STEM</p>" +
                 "</div>\n");
 
         stringBuilder.append("</div>\n");

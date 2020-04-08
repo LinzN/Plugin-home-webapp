@@ -12,15 +12,15 @@
 package de.linzn.homeWebApp;
 
 
-import de.azcore.azcoreRuntime.modules.pluginModule.AZPlugin;
 import de.linzn.homeWebApp.api.APIWebserver;
 import de.linzn.homeWebApp.mainServer.MAINWebserver;
+import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeWebAppPlugin extends AZPlugin {
+public class HomeWebAppPlugin extends STEMPlugin {
 
     public static HomeWebAppPlugin homeWebAppPlugin;
     public MAINWebserver mainWebserver;
