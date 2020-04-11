@@ -56,6 +56,10 @@ public class LandscapeFrontDashboard implements IResponseHandler {
         halfFrame2 = new HalfFrame("Aquarium", "light-aquarium", true, apiServer + "/div_light-aquarium.html", 1500);
         webAppHTML.addEntry(new DefaultFrame(halfFrame1, halfFrame2), 1, 1);
 
+        halfFrame1 = new HalfFrame("Treppe Oben", "light-topstairs", true, apiServer + "/div_light-topstairs.html", 1500);
+        webAppHTML.addEntry(new DefaultFrame(halfFrame1, null), 1, 2);
+
+
         webAppHTML.addEntry(new DefaultFrame(new MenuFrame()), 1, 3);
 
     }

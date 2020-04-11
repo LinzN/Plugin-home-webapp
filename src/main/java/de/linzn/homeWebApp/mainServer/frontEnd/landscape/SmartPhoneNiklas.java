@@ -33,7 +33,8 @@ public class SmartPhoneNiklas implements IResponseHandler {
         webAppHTML.setTitle("Smartphone Niklas");
 
         HalfFrame halfFrame1 = new HalfFrame("Niklas", "light-niklas", true, apiServer + "/div_light-niklas.html", 1500);
-        webAppHTML.addEntry(new DefaultFrame(halfFrame1, null), 0, 0);
+        HalfFrame halfFrame2 = new HalfFrame("Treppe Oben", "light-topstairs", true, apiServer + "/div_light-topstairs.html", 1500);
+        webAppHTML.addEntry(new DefaultFrame(halfFrame1, halfFrame2), 0, 0);
     }
 
     @Override
