@@ -52,11 +52,11 @@ public class LandscapeFrontDashboard implements IResponseHandler {
 
         webAppHTML.addEntry(new DefaultFrame("Müllabfur", "trash", true, apiServer + "/div_trash.html", 20000), 1, 0);
 
-        halfFrame1 = new HalfFrame("Küche", "light-kitchen", true, apiServer + "/div_light-kitchen.html", 1500);
-        halfFrame2 = new HalfFrame("Aquarium", "light-aquarium", true, apiServer + "/div_light-aquarium.html", 1500);
+        halfFrame1 = new HalfFrame("Küche", "light-kitchen", true, apiServer + "/div_light-kitchen.html", 500);
+        halfFrame2 = new HalfFrame("Aquarium", "light-aquarium", true, apiServer + "/div_light-aquarium.html", 500);
         webAppHTML.addEntry(new DefaultFrame(halfFrame1, halfFrame2), 1, 1);
 
-        halfFrame1 = new HalfFrame("Treppe Oben", "light-topstairs", true, apiServer + "/div_light-topstairs.html", 1500);
+        halfFrame1 = new HalfFrame("Treppe Oben", "light-topstairs", true, apiServer + "/div_light-topstairs.html", 500);
         webAppHTML.addEntry(new DefaultFrame(halfFrame1, null), 1, 2);
 
 

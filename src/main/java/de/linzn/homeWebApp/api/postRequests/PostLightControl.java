@@ -12,7 +12,8 @@
 package de.linzn.homeWebApp.api.postRequests;
 
 
-import de.linzn.homeDevices.devices.DeLockSwitch;
+import de.linzn.homeDevices.HomeDevicesPlugin;
+import de.linzn.homeDevices.devices.TasmotaDevice;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
@@ -31,11 +32,12 @@ public class PostLightControl implements IResponseHandler {
         String deviceName = inputList.get(1);
         AppLogger.debug(Color.GREEN + "[WEBAPP_API-SERVER] Post Request: LightControl::" + deviceName);
 
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice(deviceName);
         if (inputList.size() < 3) {
-            new DeLockSwitch(deviceName).toggleDevice();
+            tasmotaDevice.toggleDevice();
         } else {
             boolean setStatus = Integer.parseInt(inputList.get(2)) == 1;
-            new DeLockSwitch(deviceName).setDeviceStatus(setStatus);
+            tasmotaDevice.setDeviceStatus(setStatus);
         }
 
         jsonObject.put("status", true);
