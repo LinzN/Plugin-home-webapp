@@ -29,16 +29,21 @@ public class DivServer implements IResponseHandler {
         boolean plexServer = PlexServerStatus.getPlexStatus();
         double serverTemp = TemperatureScheduler.getHottestCore();
 
+        String plexStatus = "<bad>OFFLINE</bad>";
+        if (plexServer) {
+            plexStatus = "<ok>ONLINE</ok>";
+        }
+
         EmptyTemplate emptyPage = new EmptyTemplate();
 
         stringBuilder.append("<div id=\"server\">" +
                 "    <div class=\"cont\">" +
                 "        <p>" +
-                "            <h1>PLEX: " + (plexServer ? "<ok>ONLINE</ok>" : "<bad>OFFLINE</bad>") + "</h1></p>" +
+                "            <h2 style=\"font-size: 22px;font-weight: normal;\">PLEX | " + plexStatus + "</h2></p>" +
                 "    </div>" +
                 "    <div class=\"cont\">" +
                 "        <p>" +
-                "            <h1>CORE: " + serverTemp + "°C</h1></p>" +
+                "            <h2 style=\"font-size: 22px;font-weight: normal;\">CORE | " + serverTemp + "°C</h2></p>" +
                 "    </div>" +
                 "</div>");
 
