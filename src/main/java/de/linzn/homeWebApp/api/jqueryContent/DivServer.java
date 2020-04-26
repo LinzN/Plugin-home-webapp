@@ -15,6 +15,7 @@ import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.serviceStatus.callbacks.PlexServerStatus;
+import de.linzn.systemChain.callbacks.TemperatureScheduler;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class DivServer implements IResponseHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
         boolean plexServer = PlexServerStatus.getPlexStatus();
-        float serverTemp = 0f;
+        double serverTemp = TemperatureScheduler.getHottestCore();
 
         EmptyTemplate emptyPage = new EmptyTemplate();
 
@@ -37,7 +38,7 @@ public class DivServer implements IResponseHandler {
                 "    </div>" +
                 "    <div class=\"cont\">" +
                 "        <p>" +
-                "            <h1>TEMP.: " + serverTemp + "°C</h1></p>" +
+                "            <h1>CORE: " + serverTemp + "°C</h1></p>" +
                 "    </div>" +
                 "</div>");
 
