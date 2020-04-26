@@ -15,6 +15,7 @@ import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.serviceStatus.callbacks.PlexServerStatus;
+import de.linzn.serviceStatus.callbacks.ProxmoxStatus;
 import de.linzn.systemChain.callbacks.TemperatureScheduler;
 
 import java.util.List;
@@ -27,23 +28,29 @@ public class DivServer implements IResponseHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
         boolean plexServer = PlexServerStatus.getPlexStatus();
+        boolean proxmox = ProxmoxStatus.getProxmoxStatus();
         double serverTemp = TemperatureScheduler.getHottestCore();
 
         String plexStatus = "<bad>OFFLINE</bad>";
         if (plexServer) {
-            plexStatus = "<ok>ONLINE</ok>";
+            plexStatus = "<ok>ONLINE </ok>";
         }
+
+        String proxmoxStatus = "<bad>OFFLINE</bad>";
+        if (proxmox) {
+            proxmoxStatus = "<ok>ONLINE </ok>";
+        }
+
+        String tempStatus = "<ok>" + serverTemp + "°C</ok>";
+
 
         EmptyTemplate emptyPage = new EmptyTemplate();
 
         stringBuilder.append("<div id=\"server\">" +
                 "    <div class=\"cont\">" +
-                "        <p>" +
-                "            <h2 style=\"font-size: 22px;font-weight: normal;\">PLEX | " + plexStatus + "</h2></p>" +
-                "    </div>" +
-                "    <div class=\"cont\">" +
-                "        <p>" +
-                "            <h2 style=\"font-size: 22px;font-weight: normal;\">CORE | " + serverTemp + "°C</h2></p>" +
+                "        <h2 style=\"font-size: 22px;font-weight: normal;\">PLEX | " + plexStatus + "</h2>" +
+                "        <h2 style=\"font-size: 22px;font-weight: normal;\">PROX | " + proxmoxStatus + "</h2>" +
+                "        <h2 style=\"font-size: 22px;font-weight: normal;\">CORE | " + tempStatus + "</h2>" +
                 "    </div>" +
                 "</div>");
 
