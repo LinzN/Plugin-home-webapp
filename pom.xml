@@ -88,6 +88,11 @@
             <artifactId>system-chain</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>de.stem.plugins</groupId>
+            <artifactId>service-status</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

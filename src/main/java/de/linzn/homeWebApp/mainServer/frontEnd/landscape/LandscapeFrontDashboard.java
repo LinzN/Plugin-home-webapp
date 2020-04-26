@@ -36,6 +36,7 @@ public class LandscapeFrontDashboard implements IResponseHandler {
 
         webAppHTML.addEntry(new DefaultFrame("Heizung", "heater-temp", true, apiServer + "/div_heater-temp.html", 5000), 0, 0);
         webAppHTML.addEntry(new DefaultFrame("Wetter", "weather", true, apiServer + "/div_weather.html", 15000), 0, 1);
+        webAppHTML.addEntry(new DefaultFrame("Server", "server", true, apiServer + "/div_server.html", 2000), 0, 2);
         String customCode = "<div id=\"clock\">\n" +
                 "    <div class=\"clockcenter\">\n" +
                 "        <h5><div id=\"date\"></div></h5>\n" +

@@ -92,6 +92,7 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("div_light-aquarium.html", new DivLightAquarium());
         this.subHandlers.put("div_light-niklas.html", new DivLightNiklas());
         this.subHandlers.put("div_light-topstairs.html", new DivLightTreppeOben());
+        this.subHandlers.put("div_server.html", new DivServer());
         this.subHandlers.put("div_stem.html", new DivStem());
 
         /* Post requests*/
