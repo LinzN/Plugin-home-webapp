@@ -32,6 +32,8 @@ public class DivWeather implements IResponseHandler {
         double min = -1;
         double max = -1;
         String location = "None";
+        double humidity = 0;
+        double pressure = 0;
 
 
         WeatherContainer weatherContainer = LocalWeatherPlugin.localWeatherPlugin.getWeatherData();
@@ -54,6 +56,13 @@ public class DivWeather implements IResponseHandler {
             min = weatherContainer.getTemp_min();
             max = weatherContainer.getTemp_max();
             location = weatherContainer.getLocation();
+            pressure = weatherContainer.getPressure();
+            humidity = weatherContainer.getHumidity();
+
+            if (weatherContainer.isSensorData()) {
+                location = "Wetterstation";
+            }
+
         }
 
 
@@ -64,10 +73,10 @@ public class DivWeather implements IResponseHandler {
                 "        <h2><span aria-hidden=\"true\" class=\"" + icon + "\"></span><ok> " + current + " °C</ok></h2>" +
                 "        <p>" + description + "</p>" +
                 "        <p>" + min + " °C | " + max + " °C</p>" +
+                "        <p>" + pressure + " hPa | " + humidity + " %</p>" +
                 "    </div>" +
                 "    <div class=\"cont\">" +
-                "        <p>" +
-                "            <h1>" + location + "</h1></p>" +
+                "            <h1>" + location + "</h1>" +
                 "</div>" +
                 "</div>");
 
