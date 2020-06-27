@@ -20,6 +20,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontDashboard;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontSetting;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.SmartPhoneNiklas;
+import de.linzn.openJL.network.IPAddressMatcher;
 import de.stem.stemSystem.AppLogger;
 import de.stem.stemSystem.utils.Color;
 
@@ -33,7 +34,7 @@ import java.util.stream.Collectors;
 
 public class MainHandler implements HttpHandler {
 
-    private Map<String, IResponseHandler> subHandlers;
+    private final Map<String, IResponseHandler> subHandlers;
 
     public MainHandler() {
         this.subHandlers = new LinkedHashMap<>();
@@ -48,9 +49,18 @@ public class MainHandler implements HttpHandler {
 
     private void handleRequests(final HttpExchange he) throws IOException {
         List<String> whitelist = HomeWebAppPlugin.homeWebAppPlugin.getDefaultConfig().getStringList("mainServer.whitelist");
+        String requestingAddress = he.getRemoteAddress().getAddress().getHostName();
 
-        if (!whitelist.contains(he.getRemoteAddress().getAddress().getHostName())) {
-            AppLogger.debug(Color.GREEN + "[WEBAPP_MAIN-SERVER] Access deny for " + he.getRemoteAddress().getAddress().getHostName());
+        boolean matched = false;
+        for (String ip : whitelist) {
+            if (new IPAddressMatcher(ip).matches(requestingAddress)) {
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            AppLogger.debug(Color.RED + "[WEBAPP_MAIN-SERVER] Access deny for " + requestingAddress);
             he.close();
             return;
         }

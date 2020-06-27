@@ -21,6 +21,7 @@ import de.linzn.homeWebApp.api.postRequests.StemControl;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.linzn.openJL.network.IPAddressMatcher;
 import de.stem.stemSystem.AppLogger;
 import de.stem.stemSystem.utils.Color;
 
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
 
 public class ApiHandler implements HttpHandler {
 
-    private Map<String, IResponseHandler> subHandlers;
+    private final Map<String, IResponseHandler> subHandlers;
 
     public ApiHandler() {
         this.subHandlers = new LinkedHashMap<>();
@@ -49,9 +50,18 @@ public class ApiHandler implements HttpHandler {
 
     private void handleRequests(final HttpExchange he) throws IOException {
         List<String> whitelist = HomeWebAppPlugin.homeWebAppPlugin.getDefaultConfig().getStringList("apiServer.whitelist");
+        String requestingAddress = he.getRemoteAddress().getAddress().getHostName();
 
-        if (!whitelist.contains(he.getRemoteAddress().getAddress().getHostName())) {
-            AppLogger.debug(Color.RED + "[WEBAPP_API-SERVER] Access deny for " + he.getRemoteAddress().getAddress().getHostName());
+        boolean matched = false;
+        for (String ip : whitelist) {
+            if (new IPAddressMatcher(ip).matches(requestingAddress)) {
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            AppLogger.debug(Color.RED + "[WEBAPP_API-SERVER] Access deny for " + requestingAddress);
             he.close();
             return;
         }
