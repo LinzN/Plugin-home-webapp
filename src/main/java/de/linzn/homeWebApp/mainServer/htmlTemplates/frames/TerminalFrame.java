@@ -15,7 +15,7 @@ public class TerminalFrame {
     private final StringBuilder frameBuilder = new StringBuilder();
 
     public TerminalFrame(String title, String divName, boolean script, String divRequestURL, int time) {
-        frameBuilder.append("<div class=\"dash-unit\" style=\" height: 90%; \">\n" +
+        frameBuilder.append("<div class=\"dash-unit\" style=\" max-height: 90%; \">\n" +
                 "                    <dtitle>" + title + "</dtitle>\n" +
                 "                    <hr>\n" +
                 "                    <div id=\"" + divName + "\">\n" +

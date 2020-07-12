@@ -29,13 +29,13 @@ public class DivTerminal implements IResponseHandler {
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
         stringBuilder.append("<div id=\"terminal\">" +
-                "    <div class=\"cont\" style=\" text-align: left; \">");
+                "<pre class=\"console-output\">");
 
-        for (String entry : AppLogger.getLastEntries(10)) {
-            stringBuilder.append("<p>" + entry + "</p>");
+        for (String entry : AppLogger.getLastEntries(30)) {
+            stringBuilder.append("<span class=\"log-pipe\">" + entry + "</span>\n");
         }
 
-        stringBuilder.append("    </div>" +
+        stringBuilder.append("    </pre>" +
                 "</div>");
 
         EmptyTemplate emptyPage = new EmptyTemplate();
