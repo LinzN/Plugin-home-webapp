@@ -19,6 +19,7 @@ import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontDashboard;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontSetting;
+import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontTerminal;
 import de.linzn.homeWebApp.mainServer.frontEnd.landscape.SmartPhoneNiklas;
 import de.linzn.openJL.network.IPAddressMatcher;
 import de.stem.stemSystem.AppLogger;
@@ -105,6 +106,7 @@ public class MainHandler implements HttpHandler {
         this.subHandlers.put("dashboard.html", new LandscapeFrontDashboard());
         this.subHandlers.put("niklas.html", new SmartPhoneNiklas());
         this.subHandlers.put("settings.html", new LandscapeFrontSetting());
+        this.subHandlers.put("terminal.html", new LandscapeFrontTerminal());
     }
 
 }

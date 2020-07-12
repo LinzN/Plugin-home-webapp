@@ -12,7 +12,7 @@
 package de.linzn.homeWebApp.mainServer.htmlTemplates.frames;
 
 public class MenuFrame {
-    private StringBuilder frameBuilder = new StringBuilder();
+    private final StringBuilder frameBuilder = new StringBuilder();
 
     public MenuFrame() {
         frameBuilder.append("" +
@@ -21,12 +21,19 @@ public class MenuFrame {
                 "   <hr>\n");
         frameBuilder.append("" +
                 "<div class=\"cont\">\n" +
-                "   <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a>" +
-                "</div>");
+                "   <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a><br>" +
+                "\n");
+        //        "</div>");
 
         frameBuilder.append("" +
-                "<div class=\"cont\">\n" +
-                "   <a href=\"settings.html\" class=\"fas fa-cogs fs2\" style=\"color: grey; font-size: 56px;\"></a>" +
+                //        "<div class=\"cont\">\n" +
+                "   <a href=\"terminal.html\" class=\"fas fa-align-left fs2\" style=\"color: grey; font-size: 56px;\"></a><br>" +
+                "\n");
+        //        "</div>");
+
+        frameBuilder.append("" +
+                //    "<div class=\"cont\">\n" +
+                "   <a href=\"settings.html\" class=\"fas fa-cogs fs2\" style=\"color: grey; font-size: 56px;\"></a><br>" +
                 "</div>\n");
 
         frameBuilder.append("</div>\n");
