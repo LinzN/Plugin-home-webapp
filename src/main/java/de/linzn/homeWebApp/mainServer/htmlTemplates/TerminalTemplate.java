@@ -55,15 +55,14 @@ public class TerminalTemplate implements IHtmlTemplate {
         StringBuilder body = new StringBuilder();
 
         body.append("<body>\n" +
-                "    <div class=\"container\">\n");
-        body.append("<div class=\"col-sm-2 col-lg-2\"> " +
-                "<div class=\"dash-unit\">\n" +
-                "   <dtitle>Menu</dtitle>\n" +
-                "   <hr>\n" +
-                "<div class=\"cont\">\n" +
-                "   <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a></div>\n" +
-                "</div>" +
-                "" +
+                "    <div class=\"container\">\n" +
+                "<div class=\"col-sm-2 col-lg-2\"> " +
+                "   <div class=\"dash-unit\">\n" +
+                "      <dtitle>Menu</dtitle>\n" +
+                "      <hr>\n" +
+                "   <div class=\"cont\">\n" +
+                "      <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a></div>\n" +
+                "   </div>" +
                 "</div>");
 
         body.append("<div class=\"row\">");

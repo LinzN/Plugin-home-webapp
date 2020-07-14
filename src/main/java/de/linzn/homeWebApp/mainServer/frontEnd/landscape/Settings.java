@@ -20,11 +20,11 @@ import de.linzn.homeWebApp.mainServer.htmlTemplates.frames.MenuFrame;
 
 import java.util.List;
 
-public class LandscapeFrontSetting implements IResponseHandler {
-    private String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
+public class Settings implements IResponseHandler {
+    private final String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
     private WebAppTemplate webAppHTML;
 
-    public LandscapeFrontSetting() {
+    public Settings() {
         staticBuild();
     }
 

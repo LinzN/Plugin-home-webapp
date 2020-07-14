@@ -19,11 +19,11 @@ import de.linzn.homeWebApp.mainServer.htmlTemplates.frames.TerminalFrame;
 
 import java.util.List;
 
-public class LandscapeFrontTerminal implements IResponseHandler {
+public class Terminal implements IResponseHandler {
     private final String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
     private TerminalTemplate webAppHTML;
 
-    public LandscapeFrontTerminal() {
+    public Terminal() {
         staticBuild();
     }
 

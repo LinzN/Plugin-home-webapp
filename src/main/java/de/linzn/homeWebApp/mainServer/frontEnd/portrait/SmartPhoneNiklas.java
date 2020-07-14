@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.mainServer.frontEnd.landscape;
+package de.linzn.homeWebApp.mainServer.frontEnd.portrait;
 
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
@@ -21,7 +21,7 @@ import de.linzn.homeWebApp.mainServer.htmlTemplates.frames.HalfFrame;
 import java.util.List;
 
 public class SmartPhoneNiklas implements IResponseHandler {
-    private String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
+    private final String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
     private WebAppTemplate webAppHTML;
 
     public SmartPhoneNiklas() {

@@ -21,12 +21,12 @@ import de.linzn.homeWebApp.mainServer.htmlTemplates.frames.MenuFrame;
 
 import java.util.List;
 
-public class LandscapeFrontDashboard implements IResponseHandler {
+public class Dashboard implements IResponseHandler {
 
     private WebAppTemplate webAppHTML;
-    private String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
+    private final String apiServer = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-    public LandscapeFrontDashboard() {
+    public Dashboard() {
         staticBuild();
     }
 

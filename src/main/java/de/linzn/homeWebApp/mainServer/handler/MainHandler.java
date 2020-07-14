@@ -17,10 +17,10 @@ import com.sun.net.httpserver.HttpHandler;
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
-import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontDashboard;
-import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontSetting;
-import de.linzn.homeWebApp.mainServer.frontEnd.landscape.LandscapeFrontTerminal;
-import de.linzn.homeWebApp.mainServer.frontEnd.landscape.SmartPhoneNiklas;
+import de.linzn.homeWebApp.mainServer.frontEnd.landscape.Dashboard;
+import de.linzn.homeWebApp.mainServer.frontEnd.landscape.Settings;
+import de.linzn.homeWebApp.mainServer.frontEnd.landscape.Terminal;
+import de.linzn.homeWebApp.mainServer.frontEnd.portrait.SmartPhoneNiklas;
 import de.linzn.openJL.network.IPAddressMatcher;
 import de.stem.stemSystem.AppLogger;
 import de.stem.stemSystem.utils.Color;
@@ -102,11 +102,13 @@ public class MainHandler implements HttpHandler {
     private void registerSubHandlers() {
         this.subHandlers.put("__resource_dir__", new ResourceHandler());
 
-        /* Frontend  LS*/
-        this.subHandlers.put("dashboard.html", new LandscapeFrontDashboard());
+        /* Frontend  Landscape */
+        this.subHandlers.put("dashboard.html", new Dashboard());
+        this.subHandlers.put("settings.html", new Settings());
+        this.subHandlers.put("terminal.html", new Terminal());
+
+        /* Frontend Portrait */
         this.subHandlers.put("niklas.html", new SmartPhoneNiklas());
-        this.subHandlers.put("settings.html", new LandscapeFrontSetting());
-        this.subHandlers.put("terminal.html", new LandscapeFrontTerminal());
     }
 
 }
