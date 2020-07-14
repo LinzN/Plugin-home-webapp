@@ -55,13 +55,20 @@ public class TerminalTemplate implements IHtmlTemplate {
         StringBuilder body = new StringBuilder();
 
         body.append("<body>\n" +
-                "    <div class=\"container\">\n" +
-                "<div class=\"col-sm-2 col-lg-2\"> " +
-                "   <div class=\"dash-unit\">\n" +
-                "      <dtitle>Menu</dtitle>\n" +
-                "      <hr>\n" +
-                "   <div class=\"cont\">\n" +
-                "      <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a></div>\n" +
+                "<div class=\"container\">\n" +
+                "   <div class=\"col-sm-2 col-lg-2\"> " +
+                "      <div class=\"dash-unit\" style=\" height: auto; \">\n" +
+                "         <dtitle>Menu</dtitle>\n" +
+                "         <hr>\n" +
+                "      <div class=\"cont\">\n" +
+                "         <a href=\"dashboard.html\" class=\"fas fa-home fs2\" style=\"color: grey; font-size: 56px;\"></a>" +
+                "      </div>\n" +
+                "      <div class=\"cont\">\n" +
+                "         <a href=\"terminal.html\" class=\"fas fa-align-left fs2\" style=\"color: grey; font-size: 56px;\"></a>" +
+                "       </div>\n" +
+                "      <div class=\"cont\">\n" +
+                "         <a href=\"settings.html\" class=\"fas fa-cogs fs2\" style=\"color: grey; font-size: 56px;\"></a>" +
+                "      </div>\n" +
                 "   </div>" +
                 "</div>");
 
