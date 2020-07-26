@@ -26,10 +26,21 @@ public class DivCPU implements IResponseHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
         double load = JavaUtils.getSystemLoad();
+        int cpuload = (int) (load * 100);
+
+
+        String color = "green";
+        if (cpuload > 40 && cpuload < 70) {
+            color = "yellow";
+        } else if (cpuload > 70) {
+            color = "red";
+        }
 
         stringBuilder.append("<div id=\"cpu\">" +
                 "    <div class=\"cont\">" +
-                "        <h2 style=\"font-size: 22px;font-weight: normal;\">" + load + "</h2>" +
+                "       <div class=\"progress\" style=\" margin: 5%;\">\n" +
+                "        <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"" + cpuload + "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + cpuload + "%;background-color: " + color + ";\">" + cpuload + "%</div>\n" +
+                "      </div>" +
                 "    </div>" +
                 "</div>");
 
