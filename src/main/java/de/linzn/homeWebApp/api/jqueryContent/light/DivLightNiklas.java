@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
+package de.linzn.homeWebApp.api.jqueryContent.light;
 
 
 import de.linzn.homeDevices.DeviceStatus;

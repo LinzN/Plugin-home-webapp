@@ -9,29 +9,32 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
+package de.linzn.homeWebApp.api.jqueryContent.system;
 
+import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
-import de.stem.stemSystem.utils.JavaUtils;
 
 import java.util.List;
 
-public class DivCPU implements IResponseHandler {
+public class DivStem implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        double load = JavaUtils.getSystemLoad();
+        String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"cpu\">" +
-                "    <div class=\"cont\">" +
-                "        <h2 style=\"font-size: 22px;font-weight: normal;\">" + load + "</h2>" +
-                "    </div>" +
-                "</div>");
+        stringBuilder.append("<div id=\"stem\">");
+        stringBuilder.append("" +
+                "<div class=\"cont\">" +
+                "<button onclick=\"$.post('" + url + "/post_stem-control/restart')\" class=\"fas fa-fire-extinguisher tbutton\"></button>" +
+                "        <p>Kill STEM</p>" +
+                "</div>\n");
+
+        stringBuilder.append("</div>\n");
 
         EmptyTemplate emptyPage = new EmptyTemplate();
 

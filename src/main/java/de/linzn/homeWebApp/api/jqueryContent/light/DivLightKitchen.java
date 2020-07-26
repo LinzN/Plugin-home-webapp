@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
+package de.linzn.homeWebApp.api.jqueryContent.light;
 
 
 import de.linzn.homeDevices.DeviceStatus;
@@ -22,18 +22,17 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.util.List;
 
-public class DivLightAquarium implements IResponseHandler {
+public class DivLightKitchen implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
 
         StringBuilder stringBuilder = new StringBuilder();
 
-
-        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("aquarium");
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("kitchen");
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"light-aquarium\">" +
+        stringBuilder.append("<div id=\"light-kitchen\">" +
                 "    <div class=\"cont\">");
 
         if (tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED) {

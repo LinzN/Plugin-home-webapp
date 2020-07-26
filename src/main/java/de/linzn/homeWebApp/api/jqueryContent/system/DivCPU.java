@@ -9,40 +9,27 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
-
+package de.linzn.homeWebApp.api.jqueryContent.system;
 
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
-import de.linzn.systemChain.callbacks.NetworkScheduler;
+import de.stem.stemSystem.utils.JavaUtils;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-public class DivNetworkPing implements IResponseHandler {
+public class DivCPU implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
 
         StringBuilder stringBuilder = new StringBuilder();
-        float ping = NetworkScheduler.getLastPing();
 
-        String network;
-        if (ping <= 0) {
-            network = "<bad>Offline</bad>";
-        } else {
-            if (ping >= 100) {
-                network = "<bad>" + new DecimalFormat("#.#").format(ping) + "ms</bad>";
-            } else {
-                network = "<ok>" + new DecimalFormat("#.#").format(ping) + "ms</ok>";
-            }
-        }
+        double load = JavaUtils.getSystemLoad();
 
-        stringBuilder.append("<div id=\"network-ping\">" +
+        stringBuilder.append("<div id=\"cpu\">" +
                 "    <div class=\"cont\">" +
-                "        <p>\n" +
-                "            <h2><span aria-hidden=\"true\" class=\"fas fa-wifi fs2\"></span> | " + network + "</h2></p>" +
+                "        <h2 style=\"font-size: 22px;font-weight: normal;\">" + load + "</h2>" +
                 "    </div>" +
                 "</div>");
 

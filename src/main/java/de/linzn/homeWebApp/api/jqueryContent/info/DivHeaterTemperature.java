@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
+package de.linzn.homeWebApp.api.jqueryContent.info;
 
 
 import de.linzn.heatingstatus.HeatingStatusPlugin;

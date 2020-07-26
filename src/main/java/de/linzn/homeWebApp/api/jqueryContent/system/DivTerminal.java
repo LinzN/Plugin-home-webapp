@@ -9,16 +9,17 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent;
+package de.linzn.homeWebApp.api.jqueryContent.system;
 
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.stem.stemSystem.AppLogger;
 
 import java.util.List;
 
-public class DivStem implements IResponseHandler {
+public class DivTerminal implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
@@ -27,14 +28,15 @@ public class DivStem implements IResponseHandler {
 
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"stem\">");
-        stringBuilder.append("" +
-                "<div class=\"cont\">" +
-                "<button onclick=\"$.post('" + url + "/post_stem-control/restart')\" class=\"fas fa-fire-extinguisher tbutton\"></button>" +
-                "        <p>Kill STEM</p>" +
-                "</div>\n");
+        stringBuilder.append("<div id=\"terminal\">" +
+                "<pre class=\"console-output\">");
 
-        stringBuilder.append("</div>\n");
+        for (String entry : AppLogger.getLastEntries(30)) {
+            stringBuilder.append("<span class=\"log-pipe\">" + entry + "</span>\n");
+        }
+
+        stringBuilder.append("    </pre>" +
+                "</div>");
 
         EmptyTemplate emptyPage = new EmptyTemplate();
 
