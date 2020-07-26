@@ -33,6 +33,7 @@ public class Settings implements IResponseHandler {
         webAppHTML.setTitle("Settings");
 
         webAppHTML.addEntry(new DefaultFrame("STEM", "stem", true, apiServer + "/div_stem.html", 120000), 0, 0);
+        webAppHTML.addEntry(new DefaultFrame("CPU Load", "cpu", true, apiServer + "/div_cpu.html", 2000), 0, 1);
 
         webAppHTML.addEntry(new DefaultFrame(new MenuFrame()), 1, 3);
 
