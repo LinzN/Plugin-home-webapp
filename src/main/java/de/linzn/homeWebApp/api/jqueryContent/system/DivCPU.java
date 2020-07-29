@@ -26,7 +26,8 @@ public class DivCPU implements IResponseHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
         double load = JavaUtils.getSystemLoad();
-        int cpuload = (int) (load * 100);
+        int cores = JavaUtils.getCoreAmount();
+        int cpuload = (int) ((load * 100) / cores);
 
 
         String color = "green";
