@@ -23,8 +23,8 @@ public class WebAppTemplate implements IHtmlTemplate {
 
     private String generatedPage;
     private String title = "WebApp";
-    private String[][] matrix;
-    private int frameSize;
+    private final String[][] matrix;
+    private final int frameSize;
 
 
     public WebAppTemplate(int rows, int columns) {
@@ -56,8 +56,6 @@ public class WebAppTemplate implements IHtmlTemplate {
                 "    <link href=\"css/main.css\" rel=\"stylesheet\">\n" +
                 "    <script type=\"text/javascript\" src=\"js/jquery.js\"></script>\n" +
                 "    <script type=\"text/javascript\" src=\"bootstrap/js/bootstrap.min.js\"></script>\n" +
-                "    <link href=\"http://fonts.googleapis.com/css?family=Raleway:400,300\" rel=\"stylesheet\" type=\"text/css\">\n" +
-                "    <link href=\"http://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\" type=\"text/css\">\n" +
                 "</head>";
     }
 
