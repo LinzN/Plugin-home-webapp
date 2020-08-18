@@ -36,11 +36,11 @@ public class DivLightTreppeOben implements IResponseHandler {
                 "    <div class=\"cont\">");
 
         if (tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED) {
-            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"far fa-lightbulb tbutton\"></button></ok>");
+            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"fas fa-chevron-up tbutton\"></button></ok>");
         } else if (tasmotaDevice.getDeviceStatus() == DeviceStatus.DISABLED) {
-            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"far fa-lightbulb tbutton\"></button>");
+            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"fas fa-chevron-up tbutton\"></button>");
         } else {
-            stringBuilder.append("<bad><button class=\"far fa-lightbulb tbutton\"></button></bad>");
+            stringBuilder.append("<button class=\"fas fa-chevron-up tbutton\" style=\" color: #808080; \"></button>");
         }
 
         stringBuilder.append("    </div>" +
