@@ -22,6 +22,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DivHeaterTemperature implements IResponseHandler {
@@ -31,8 +32,22 @@ public class DivHeaterTemperature implements IResponseHandler {
         List<Outlet> outlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getOutletsList();
         List<Notify> notifies = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getNotifiesList();
 
-
+        String dateString = "N.A";
         String value = "0.0";
+
+        Date date = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getDate();
+        if (date != null) {
+            int dateInt = (int) ((new Date().getTime() - date.getTime()) / (1000 * 60));
+
+            if (dateInt == 0) {
+                dateInt = (int) ((new Date().getTime() - date.getTime()) / (1000));
+                dateString = "Last sync: " + dateInt + " Seconds ago";
+            } else {
+                dateString = "Last sync: " + dateInt + " Minutes ago";
+            }
+        }
+
+
         boolean isBurning = false;
         for (Inlet inlet : inlets) {
             if (inlet.getIndex() == 3) {
@@ -71,12 +86,13 @@ public class DivHeaterTemperature implements IResponseHandler {
         } else if (isBurning) {
             stringBuilder.append("<div class=\"cont\">");
             stringBuilder.append("<span aria-hidden=\"true\" class=\"fas fa-burn fs2\" style=\"color: orange; font-size: 45px;\"></span>");
-            stringBuilder.append("<p>Aufheiz-Phase</p>");
+            stringBuilder.append("<h4>Aufheiz-Phase</h4>");
         } else {
             stringBuilder.append("<div class=\"cont\">");
             stringBuilder.append("<ok><span aria-hidden=\"true\" class=\"fas fa-check-circle fs2\" style=\"font-size: 45px;\"></span></ok>");
-            stringBuilder.append("<p>Schlaf-Modus</p>");
+            stringBuilder.append("<h4>Schlaf-Modus</h4>");
         }
+        stringBuilder.append("<h5>" + dateString + "</h5>");
         stringBuilder.append(
                 "</div>" +
                         "</div>");
