@@ -17,6 +17,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.localWeather.LocalWeatherPlugin;
 import de.linzn.localWeather.engine.WeatherContainer;
 
+import java.util.Date;
 import java.util.List;
 
 public class DivWeather implements IResponseHandler {
@@ -34,6 +35,7 @@ public class DivWeather implements IResponseHandler {
         String location = "None";
         double humidity = 0;
         double pressure = 0;
+        String dateString = "N.A";
 
 
         WeatherContainer weatherContainer = LocalWeatherPlugin.localWeatherPlugin.getWeatherData();
@@ -59,10 +61,14 @@ public class DivWeather implements IResponseHandler {
             pressure = weatherContainer.getPressure();
             humidity = weatherContainer.getHumidity();
 
-            if (weatherContainer.isSensorData()) {
-                location = "Wetterstation";
-            }
+            int dateInt = (int) ((new Date().getTime() - weatherContainer.getDate().getTime()) / (1000 * 60));
 
+            if (dateInt == 0) {
+                dateInt = (int) ((new Date().getTime() - weatherContainer.getDate().getTime()) / (1000));
+                dateString = "Last sync: " + dateInt + " Seconds ago";
+            } else {
+                dateString = "Last sync: " + dateInt + " Minutes ago";
+            }
         }
 
 
@@ -77,6 +83,7 @@ public class DivWeather implements IResponseHandler {
                 "    </div>" +
                 "    <div class=\"cont\">" +
                 "            <h1>" + location + "</h1>" +
+                "            <h5>" + dateString + "</h5>" +
                 "</div>" +
                 "</div>");
 
