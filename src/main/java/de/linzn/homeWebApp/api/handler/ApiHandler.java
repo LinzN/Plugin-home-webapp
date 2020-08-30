@@ -19,6 +19,7 @@ import de.linzn.homeWebApp.api.jqueryContent.info.DivHeaterTemperature;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivNetworkPing;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivTrash;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivWeather;
+import de.linzn.homeWebApp.api.jqueryContent.jsontest.DeviceStatusJSON;
 import de.linzn.homeWebApp.api.jqueryContent.jsontest.ResourcesJSON;
 import de.linzn.homeWebApp.api.jqueryContent.jsontest.TerminalJSON;
 import de.linzn.homeWebApp.api.jqueryContent.jsontest.WeatherJSON;
@@ -30,6 +31,7 @@ import de.linzn.homeWebApp.api.jqueryContent.system.DivCPU;
 import de.linzn.homeWebApp.api.jqueryContent.system.DivServer;
 import de.linzn.homeWebApp.api.jqueryContent.system.DivStem;
 import de.linzn.homeWebApp.api.jqueryContent.system.DivTerminal;
+import de.linzn.homeWebApp.api.postRequests.ChangeDeviceStatus;
 import de.linzn.homeWebApp.api.postRequests.PostLightControl;
 import de.linzn.homeWebApp.api.postRequests.StemControl;
 import de.linzn.homeWebApp.core.IResponseHandler;
@@ -124,11 +126,13 @@ public class ApiHandler implements HttpHandler {
         /* Post requests*/
         this.subHandlers.put("post_light-control", new PostLightControl());
         this.subHandlers.put("post_stem-control", new StemControl());
+        this.subHandlers.put("post_change-device-status", new ChangeDeviceStatus());
 
         /* Test JSon API*/
         this.subHandlers.put("json_terminal", new TerminalJSON());
         this.subHandlers.put("json_weather", new WeatherJSON());
         this.subHandlers.put("json_resources", new ResourcesJSON());
+        this.subHandlers.put("json_device-status", new DeviceStatusJSON());
     }
 
 }
