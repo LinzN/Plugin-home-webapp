@@ -19,10 +19,7 @@ import de.linzn.homeWebApp.api.jqueryContent.info.DivHeaterTemperature;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivNetworkPing;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivTrash;
 import de.linzn.homeWebApp.api.jqueryContent.info.DivWeather;
-import de.linzn.homeWebApp.api.jqueryContent.jsontest.DeviceStatusJSON;
-import de.linzn.homeWebApp.api.jqueryContent.jsontest.ResourcesJSON;
-import de.linzn.homeWebApp.api.jqueryContent.jsontest.TerminalJSON;
-import de.linzn.homeWebApp.api.jqueryContent.jsontest.WeatherJSON;
+import de.linzn.homeWebApp.api.jqueryContent.jsontest.*;
 import de.linzn.homeWebApp.api.jqueryContent.light.DivLightAquarium;
 import de.linzn.homeWebApp.api.jqueryContent.light.DivLightKitchen;
 import de.linzn.homeWebApp.api.jqueryContent.light.DivLightNiklas;
@@ -133,6 +130,7 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_weather", new WeatherJSON());
         this.subHandlers.put("json_resources", new ResourcesJSON());
         this.subHandlers.put("json_device-status", new DeviceStatusJSON());
+        this.subHandlers.put("json_reminder", new ReminderJSON());
     }
 
 }
