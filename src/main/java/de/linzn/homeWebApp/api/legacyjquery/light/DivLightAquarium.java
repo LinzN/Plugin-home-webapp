@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.light;
+package de.linzn.homeWebApp.api.legacyjquery.light;
 
 
 import de.linzn.homeDevices.DeviceStatus;
@@ -22,7 +22,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.util.List;
 
-public class DivLightNiklas implements IResponseHandler {
+public class DivLightAquarium implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
@@ -30,18 +30,18 @@ public class DivLightNiklas implements IResponseHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
 
-        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("niklas");
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("aquarium");
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"light-niklas\">" +
+        stringBuilder.append("<div id=\"light-aquarium\">" +
                 "    <div class=\"cont\">");
 
         if (tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED) {
-            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"fas fa-lightbulb tbutton\"></button></ok>");
+            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"fas fa-fish tbutton\"></button></ok>");
         } else if (tasmotaDevice.getDeviceStatus() == DeviceStatus.DISABLED) {
-            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"far fa-lightbulb tbutton\"></button>");
+            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"fas fa-fish tbutton\"></button>");
         } else {
-            stringBuilder.append("<button class=\"far fa-lightbulb tbutton\" style=\" color: #808080; \"></button>");
+            stringBuilder.append("<button class=\"fas fa-fish tbutton\" style=\" color: #808080; \"></button>");
         }
 
         stringBuilder.append("    </div>" +

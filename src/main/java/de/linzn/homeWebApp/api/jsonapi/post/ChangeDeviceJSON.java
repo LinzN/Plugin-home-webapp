@@ -9,30 +9,43 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.jsontest;
+package de.linzn.homeWebApp.api.jsonapi.post;
 
-import de.linzn.homeDevices.DeviceStatus;
+
 import de.linzn.homeDevices.HomeDevicesPlugin;
 import de.linzn.homeDevices.devices.TasmotaDevice;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.utils.Color;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class DeviceStatusJSON implements IResponseHandler {
+public class ChangeDeviceJSON implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
-        String deviceName = inputList.get(1);
-        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice(deviceName);
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("status", tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED); /* todo fix status enum */
+        String deviceName = inputList.get(1);
+        STEMSystemApp.LOGGER.DEBUG(Color.GREEN + "[WEBAPP_API-SERVER] Post Request: DeviceControl::" + deviceName);
+
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice(deviceName);
+        boolean newStatus;
+        if (inputList.size() < 3) {
+            tasmotaDevice.toggleDevice();
+            newStatus = false; /* todo fix this with return value*/
+        } else {
+            boolean setStatus = Boolean.parseBoolean(inputList.get(2));
+            tasmotaDevice.setDeviceStatus(setStatus);
+            newStatus = setStatus; /* todo fix this with return value*/
+        }
+
+        jsonObject.put("status", newStatus);
 
         JSONTemplate emptyPage = new JSONTemplate();
-
         emptyPage.setCode(jsonObject);
         return emptyPage;
     }

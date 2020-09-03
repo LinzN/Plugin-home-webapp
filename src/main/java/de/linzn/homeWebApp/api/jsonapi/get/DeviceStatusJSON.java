@@ -9,37 +9,27 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.jsontest;
+package de.linzn.homeWebApp.api.jsonapi.get;
 
+import de.linzn.homeDevices.DeviceStatus;
+import de.linzn.homeDevices.HomeDevicesPlugin;
+import de.linzn.homeDevices.devices.TasmotaDevice;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
-import de.stem.stemSystem.utils.JavaUtils;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class ResourcesJSON implements IResponseHandler {
+public class DeviceStatusJSON implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
-        double load = JavaUtils.getSystemLoad();
-        int cores = JavaUtils.getCoreAmount();
-
-        double usedMemory = JavaUtils.getUsedMemory();
-        double maxMemory = JavaUtils.getMaxMemory();
-
-        int cpuLoad = (int) ((load * 100) / cores);
-
-        int memoryLoad = (int) ((100 / maxMemory) * usedMemory);
-
+        String deviceName = inputList.get(1);
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice(deviceName);
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("cpuLoad", cpuLoad);
-        jsonObject.put("memoryLoad", memoryLoad);
-        jsonObject.put("memoryTotal", maxMemory);
-        jsonObject.put("memoryUsed", usedMemory);
-
+        jsonObject.put("status", tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED); /* todo fix status enum */
 
         JSONTemplate emptyPage = new JSONTemplate();
 

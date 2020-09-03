@@ -9,40 +9,39 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.info;
-
+package de.linzn.homeWebApp.api.legacyjquery.system;
 
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
-import de.linzn.systemChain.callbacks.NetworkScheduler;
+import de.stem.stemSystem.utils.JavaUtils;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-public class DivNetworkPing implements IResponseHandler {
+public class DivCPU implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
 
         StringBuilder stringBuilder = new StringBuilder();
-        float ping = NetworkScheduler.getLastPing();
 
-        String network;
-        if (ping <= 0) {
-            network = "<bad>Offline</bad>";
-        } else {
-            if (ping >= 100) {
-                network = "<bad>" + new DecimalFormat("#.#").format(ping) + "ms</bad>";
-            } else {
-                network = "<ok>" + new DecimalFormat("#.#").format(ping) + "ms</ok>";
-            }
+        double load = JavaUtils.getSystemLoad();
+        int cores = JavaUtils.getCoreAmount();
+        int cpuload = (int) ((load * 100) / cores);
+
+
+        String color = "green";
+        if (cpuload > 40 && cpuload < 70) {
+            color = "yellow";
+        } else if (cpuload > 70) {
+            color = "red";
         }
 
-        stringBuilder.append("<div id=\"network-ping\">" +
+        stringBuilder.append("<div id=\"cpu\">" +
                 "    <div class=\"cont\">" +
-                "        <p>\n" +
-                "            <h2><span aria-hidden=\"true\" class=\"fas fa-wifi fs2\"></span> | " + network + "</h2></p>" +
+                "       <div class=\"progress\" style=\" margin: 5%;\">\n" +
+                "        <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"" + cpuload + "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + cpuload + "%;background-color: " + color + ";\">" + cpuload + "%</div>\n" +
+                "      </div>" +
                 "    </div>" +
                 "</div>");
 

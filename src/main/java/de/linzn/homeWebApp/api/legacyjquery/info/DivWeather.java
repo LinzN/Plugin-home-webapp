@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.info;
+package de.linzn.homeWebApp.api.legacyjquery.info;
 
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;

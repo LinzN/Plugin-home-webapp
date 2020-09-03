@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.light;
+package de.linzn.homeWebApp.api.legacyjquery.light;
 
 
 import de.linzn.homeDevices.DeviceStatus;
@@ -22,25 +22,26 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 
 import java.util.List;
 
-public class DivLightTreppeOben implements IResponseHandler {
+public class DivLightNiklas implements IResponseHandler {
     @Override
     public IHtmlTemplate buildResponse(List<String> inputList) {
 
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("topstairs");
+
+        TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice("niklas");
         String url = "http://" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getHostname() + ":" + HomeWebAppPlugin.homeWebAppPlugin.apiWebserver.getPort();
 
-        stringBuilder.append("<div id=\"light-topstairs\">" +
+        stringBuilder.append("<div id=\"light-niklas\">" +
                 "    <div class=\"cont\">");
 
         if (tasmotaDevice.getDeviceStatus() == DeviceStatus.ENABLED) {
-            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"fas fa-chevron-up tbutton\"></button></ok>");
+            stringBuilder.append("<ok><button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/0')\" class=\"fas fa-lightbulb tbutton\"></button></ok>");
         } else if (tasmotaDevice.getDeviceStatus() == DeviceStatus.DISABLED) {
-            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"fas fa-chevron-up tbutton\"></button>");
+            stringBuilder.append("<button onclick=\"$.post('" + url + "/post_light-control/" + tasmotaDevice.getDeviceName() + "/1')\" class=\"far fa-lightbulb tbutton\"></button>");
         } else {
-            stringBuilder.append("<button class=\"fas fa-chevron-up tbutton\" style=\" color: #808080; \"></button>");
+            stringBuilder.append("<button class=\"far fa-lightbulb tbutton\" style=\" color: #808080; \"></button>");
         }
 
         stringBuilder.append("    </div>" +

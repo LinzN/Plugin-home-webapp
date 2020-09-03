@@ -15,20 +15,20 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import de.linzn.homeWebApp.HomeWebAppPlugin;
-import de.linzn.homeWebApp.api.jqueryContent.info.DivHeaterTemperature;
-import de.linzn.homeWebApp.api.jqueryContent.info.DivNetworkPing;
-import de.linzn.homeWebApp.api.jqueryContent.info.DivTrash;
-import de.linzn.homeWebApp.api.jqueryContent.info.DivWeather;
-import de.linzn.homeWebApp.api.jqueryContent.jsontest.*;
-import de.linzn.homeWebApp.api.jqueryContent.light.DivLightAquarium;
-import de.linzn.homeWebApp.api.jqueryContent.light.DivLightKitchen;
-import de.linzn.homeWebApp.api.jqueryContent.light.DivLightNiklas;
-import de.linzn.homeWebApp.api.jqueryContent.light.DivLightTreppeOben;
-import de.linzn.homeWebApp.api.jqueryContent.system.DivCPU;
-import de.linzn.homeWebApp.api.jqueryContent.system.DivServer;
-import de.linzn.homeWebApp.api.jqueryContent.system.DivStem;
-import de.linzn.homeWebApp.api.jqueryContent.system.DivTerminal;
-import de.linzn.homeWebApp.api.postRequests.ChangeDeviceStatus;
+import de.linzn.homeWebApp.api.jsonapi.get.*;
+import de.linzn.homeWebApp.api.jsonapi.post.ChangeDeviceJSON;
+import de.linzn.homeWebApp.api.legacyjquery.info.DivHeaterTemperature;
+import de.linzn.homeWebApp.api.legacyjquery.info.DivNetworkPing;
+import de.linzn.homeWebApp.api.legacyjquery.info.DivTrash;
+import de.linzn.homeWebApp.api.legacyjquery.info.DivWeather;
+import de.linzn.homeWebApp.api.legacyjquery.light.DivLightAquarium;
+import de.linzn.homeWebApp.api.legacyjquery.light.DivLightKitchen;
+import de.linzn.homeWebApp.api.legacyjquery.light.DivLightNiklas;
+import de.linzn.homeWebApp.api.legacyjquery.light.DivLightTreppeOben;
+import de.linzn.homeWebApp.api.legacyjquery.system.DivCPU;
+import de.linzn.homeWebApp.api.legacyjquery.system.DivServer;
+import de.linzn.homeWebApp.api.legacyjquery.system.DivStem;
+import de.linzn.homeWebApp.api.legacyjquery.system.DivTerminal;
 import de.linzn.homeWebApp.api.postRequests.PostLightControl;
 import de.linzn.homeWebApp.api.postRequests.StemControl;
 import de.linzn.homeWebApp.core.IResponseHandler;
@@ -123,7 +123,7 @@ public class ApiHandler implements HttpHandler {
         /* Post requests*/
         this.subHandlers.put("post_light-control", new PostLightControl());
         this.subHandlers.put("post_stem-control", new StemControl());
-        this.subHandlers.put("post_change-device-status", new ChangeDeviceStatus());
+        this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
 
         /* Test JSon API*/
         this.subHandlers.put("json_terminal", new TerminalJSON());
@@ -131,6 +131,7 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_resources", new ResourcesJSON());
         this.subHandlers.put("json_device-status", new DeviceStatusJSON());
         this.subHandlers.put("json_reminder", new ReminderJSON());
+        this.subHandlers.put("json_notification", new NotificationJSON());
     }
 
 }

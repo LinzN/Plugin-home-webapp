@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.jqueryContent.jsontest;
+package de.linzn.homeWebApp.api.jsonapi.get;
 
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
