@@ -18,6 +18,7 @@ import de.linzn.heatingstatus.objects.Outlet;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -32,24 +33,33 @@ public class HeaterDataJSON implements IResponseHandler {
 
         JSONObject jsonObject = new JSONObject();
 
-        JSONObject inletsObject = new JSONObject();
+        JSONArray inletsArray = new JSONArray();
         for (Inlet inlet : inlets) {
-            inletsObject.put(inlet.getName(), inlet.getValue());
+            JSONObject object = new JSONObject();
+            object.put("name", inlet.getName());
+            object.put("value", inlet.getValue());
+            inletsArray.put(object);
         }
 
-        JSONObject outletsObject = new JSONObject();
+        JSONArray outletsArray = new JSONArray();
         for (Outlet outlet : outlets) {
-            outletsObject.put(outlet.getName(), outlet.isActive());
+            JSONObject object = new JSONObject();
+            object.put("name", outlet.getName());
+            object.put("status", outlet.isActive());
+            outletsArray.put(object);
         }
 
-        JSONObject notifiesObject = new JSONObject();
+        JSONArray notifiesArray = new JSONArray();
         for (Notify notify : notifies) {
-            notifiesObject.put(notify.getName(), notify.isActive());
+            JSONObject object = new JSONObject();
+            object.put("name", notify.getName());
+            object.put("status", notify.isActive());
+            notifiesArray.put(object);
         }
 
-        jsonObject.put("inlets", inletsObject);
-        jsonObject.put("outlets", outletsObject);
-        jsonObject.put("notifies", notifiesObject);
+        jsonObject.put("inlets", inletsArray);
+        jsonObject.put("outlets", outletsArray);
+        jsonObject.put("notifies", notifiesArray);
 
         JSONTemplate emptyPage = new JSONTemplate();
 
