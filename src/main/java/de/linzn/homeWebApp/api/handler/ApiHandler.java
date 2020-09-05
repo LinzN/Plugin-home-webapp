@@ -25,12 +25,12 @@ import de.linzn.homeWebApp.api.legacyjquery.light.DivLightAquarium;
 import de.linzn.homeWebApp.api.legacyjquery.light.DivLightKitchen;
 import de.linzn.homeWebApp.api.legacyjquery.light.DivLightNiklas;
 import de.linzn.homeWebApp.api.legacyjquery.light.DivLightTreppeOben;
+import de.linzn.homeWebApp.api.legacyjquery.postRequests.PostLightControl;
+import de.linzn.homeWebApp.api.legacyjquery.postRequests.StemControl;
 import de.linzn.homeWebApp.api.legacyjquery.system.DivCPU;
 import de.linzn.homeWebApp.api.legacyjquery.system.DivServer;
 import de.linzn.homeWebApp.api.legacyjquery.system.DivStem;
 import de.linzn.homeWebApp.api.legacyjquery.system.DivTerminal;
-import de.linzn.homeWebApp.api.postRequests.PostLightControl;
-import de.linzn.homeWebApp.api.postRequests.StemControl;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
@@ -123,15 +123,18 @@ public class ApiHandler implements HttpHandler {
         /* Post requests*/
         this.subHandlers.put("post_light-control", new PostLightControl());
         this.subHandlers.put("post_stem-control", new StemControl());
-        this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
 
-        /* Test JSon API*/
+        /* JSON GET API */
         this.subHandlers.put("json_terminal", new TerminalJSON());
         this.subHandlers.put("json_weather", new WeatherJSON());
         this.subHandlers.put("json_resources", new ResourcesJSON());
         this.subHandlers.put("json_device-status", new DeviceStatusJSON());
         this.subHandlers.put("json_reminder", new ReminderJSON());
         this.subHandlers.put("json_notification", new NotificationJSON());
+        this.subHandlers.put("json_heater-data", new HeaterDataJSON());
+
+        /* JSON PUSH API */
+        this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
     }
 
 }

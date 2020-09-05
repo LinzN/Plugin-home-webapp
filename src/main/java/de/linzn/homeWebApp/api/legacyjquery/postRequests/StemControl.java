@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.homeWebApp.api.postRequests;
+package de.linzn.homeWebApp.api.legacyjquery.postRequests;
 
 
 import de.linzn.homeWebApp.HomeWebAppPlugin;

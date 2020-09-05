@@ -30,7 +30,7 @@ public class ChangeDeviceJSON implements IResponseHandler {
         JSONObject jsonObject = new JSONObject();
 
         String deviceName = inputList.get(1);
-        STEMSystemApp.LOGGER.DEBUG(Color.GREEN + "[WEBAPP_API-SERVER] Post Request: DeviceControl::" + deviceName);
+        STEMSystemApp.LOGGER.INFO(Color.GREEN + "[API-SERVER] Post Request: DeviceControl::" + deviceName);
 
         TasmotaDevice tasmotaDevice = HomeDevicesPlugin.homeDevicesPlugin.getTasmotaDevice(deviceName);
         boolean newStatus;
