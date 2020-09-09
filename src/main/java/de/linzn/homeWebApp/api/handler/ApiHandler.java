@@ -132,6 +132,7 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_reminder", new ReminderJSON());
         this.subHandlers.put("json_notification", new NotificationJSON());
         this.subHandlers.put("json_heater-data", new HeaterDataJSON());
+        this.subHandlers.put("json_trash-calendar", new TrashCalendarJSON());
 
         /* JSON PUSH API */
         this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
