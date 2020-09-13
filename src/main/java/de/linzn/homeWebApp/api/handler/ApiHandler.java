@@ -16,6 +16,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.api.jsonapi.get.*;
+import de.linzn.homeWebApp.api.jsonapi.post.ChangeAutoModeJSON;
 import de.linzn.homeWebApp.api.jsonapi.post.ChangeDeviceJSON;
 import de.linzn.homeWebApp.api.legacyjquery.info.DivHeaterTemperature;
 import de.linzn.homeWebApp.api.legacyjquery.info.DivNetworkPing;
@@ -133,9 +134,11 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_notification", new NotificationJSON());
         this.subHandlers.put("json_heater-data", new HeaterDataJSON());
         this.subHandlers.put("json_trash-calendar", new TrashCalendarJSON());
+        this.subHandlers.put("json_automode", new AutoModeJSON());
 
         /* JSON PUSH API */
         this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
+        this.subHandlers.put("post_change-automode", new ChangeAutoModeJSON());
     }
 
 }
