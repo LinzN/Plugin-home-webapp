@@ -35,9 +35,11 @@ import de.linzn.homeWebApp.api.legacyjquery.system.DivTerminal;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
+import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
 import de.linzn.openJL.network.IPAddressMatcher;
 import de.stem.stemSystem.AppLogger;
 import de.stem.stemSystem.utils.Color;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -90,6 +92,15 @@ public class ApiHandler implements HttpHandler {
             if (this.subHandlers.containsKey(command.toLowerCase())) {
                 iHtmlPage = this.subHandlers.get(command.toLowerCase()).buildResponse(argsList);
             }
+        } else {
+            iHtmlPage = new JSONTemplate();
+
+            JSONArray jsonArray = new JSONArray();
+            for (String key : this.subHandlers.keySet()) {
+                jsonArray.put(key);
+            }
+
+            ((JSONTemplate) iHtmlPage).setCode(jsonArray);
         }
 
         iHtmlPage.generate();
