@@ -38,6 +38,7 @@ public class ReminderJSON implements IResponseHandler {
             jsonObject.put("reminderType", "trash");
             jsonObject.put("name", iTrash.getName());
             jsonObject.put("date", dateFormat.format(iTrash.getDate()));
+            jsonObject.put("type", iTrash.getType().name());
             jsonArray.put(jsonObject);
         }
         JSONTemplate emptyPage = new JSONTemplate();
