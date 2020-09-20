@@ -146,6 +146,7 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_heater-data", new HeaterDataJSON());
         this.subHandlers.put("json_trash-calendar", new TrashCalendarJSON());
         this.subHandlers.put("json_automode", new AutoModeJSON());
+        this.subHandlers.put("json_generic", new GenericDataJSON());
 
         /* JSON PUSH API */
         this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
