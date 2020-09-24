@@ -18,20 +18,6 @@ import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.api.jsonapi.get.*;
 import de.linzn.homeWebApp.api.jsonapi.post.ChangeAutoModeJSON;
 import de.linzn.homeWebApp.api.jsonapi.post.ChangeDeviceJSON;
-import de.linzn.homeWebApp.api.legacyjquery.info.DivHeaterTemperature;
-import de.linzn.homeWebApp.api.legacyjquery.info.DivNetworkPing;
-import de.linzn.homeWebApp.api.legacyjquery.info.DivTrash;
-import de.linzn.homeWebApp.api.legacyjquery.info.DivWeather;
-import de.linzn.homeWebApp.api.legacyjquery.light.DivLightAquarium;
-import de.linzn.homeWebApp.api.legacyjquery.light.DivLightKitchen;
-import de.linzn.homeWebApp.api.legacyjquery.light.DivLightNiklas;
-import de.linzn.homeWebApp.api.legacyjquery.light.DivLightTreppeOben;
-import de.linzn.homeWebApp.api.legacyjquery.postRequests.PostLightControl;
-import de.linzn.homeWebApp.api.legacyjquery.postRequests.StemControl;
-import de.linzn.homeWebApp.api.legacyjquery.system.DivCPU;
-import de.linzn.homeWebApp.api.legacyjquery.system.DivServer;
-import de.linzn.homeWebApp.api.legacyjquery.system.DivStem;
-import de.linzn.homeWebApp.api.legacyjquery.system.DivTerminal;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
@@ -118,24 +104,6 @@ public class ApiHandler implements HttpHandler {
     }
 
     private void registerSubHandlers() {
-        /* JQuery requests */
-        this.subHandlers.put("div_heater-temp.html", new DivHeaterTemperature());
-        this.subHandlers.put("div_network-ping.html", new DivNetworkPing());
-        this.subHandlers.put("div_weather.html", new DivWeather());
-        this.subHandlers.put("div_trash.html", new DivTrash());
-        this.subHandlers.put("div_light-kitchen.html", new DivLightKitchen());
-        this.subHandlers.put("div_light-aquarium.html", new DivLightAquarium());
-        this.subHandlers.put("div_light-niklas.html", new DivLightNiklas());
-        this.subHandlers.put("div_light-topstairs.html", new DivLightTreppeOben());
-        this.subHandlers.put("div_server.html", new DivServer());
-        this.subHandlers.put("div_stem.html", new DivStem());
-        this.subHandlers.put("div_cpu.html", new DivCPU());
-        this.subHandlers.put("div_terminal.html", new DivTerminal());
-
-        /* Post requests*/
-        this.subHandlers.put("post_light-control", new PostLightControl());
-        this.subHandlers.put("post_stem-control", new StemControl());
-
         /* JSON GET API */
         this.subHandlers.put("json_terminal", new TerminalJSON());
         this.subHandlers.put("json_weather", new WeatherJSON());

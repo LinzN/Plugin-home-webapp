@@ -13,7 +13,6 @@ package de.linzn.homeWebApp;
 
 
 import de.linzn.homeWebApp.api.APIWebserver;
-import de.linzn.homeWebApp.mainServer.MAINWebserver;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import java.util.List;
 public class HomeWebAppPlugin extends STEMPlugin {
 
     public static HomeWebAppPlugin homeWebAppPlugin;
-    public MAINWebserver mainWebserver;
     public APIWebserver apiWebserver;
 
 
@@ -35,15 +33,11 @@ public class HomeWebAppPlugin extends STEMPlugin {
     public void onEnable() {
         this.setupConfig();
         this.apiWebserver = new APIWebserver(this.getDefaultConfig().getString("apiServer.hostname"), this.getDefaultConfig().getInt("apiServer.port"));
-        this.mainWebserver = new MAINWebserver(this.getDefaultConfig().getString("mainServer.hostname"), this.getDefaultConfig().getInt("mainServer.port"));
-
         this.apiWebserver.start();
-        this.mainWebserver.start();
     }
 
     @Override
     public void onDisable() {
-        this.mainWebserver.stop();
         this.apiWebserver.stop();
     }
 
