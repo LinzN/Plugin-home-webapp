@@ -18,8 +18,8 @@ import de.linzn.homeWebApp.HomeWebAppPlugin;
 import de.linzn.homeWebApp.api.jsonapi.get.*;
 import de.linzn.homeWebApp.api.jsonapi.post.ChangeAutoModeJSON;
 import de.linzn.homeWebApp.api.jsonapi.post.ChangeDeviceJSON;
+import de.linzn.homeWebApp.api.jsonapi.post.ExecuteStemCommandJSON;
 import de.linzn.homeWebApp.core.IResponseHandler;
-import de.linzn.homeWebApp.core.htmlTemplates.EmptyTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
 import de.linzn.openJL.network.IPAddressMatcher;
@@ -71,7 +71,7 @@ public class ApiHandler implements HttpHandler {
         String url = he.getRequestURI().getRawPath();
 
         List<String> argsList = Arrays.stream(url.split("/")).filter(arg -> !arg.isEmpty()).collect(Collectors.toList());
-        IHtmlTemplate iHtmlPage = new EmptyTemplate();
+        IHtmlTemplate iHtmlPage = new JSONTemplate();
 
         if (!argsList.isEmpty()) {
             String command = argsList.get(0);
@@ -115,10 +115,12 @@ public class ApiHandler implements HttpHandler {
         this.subHandlers.put("json_trash-calendar", new TrashCalendarJSON());
         this.subHandlers.put("json_automode", new AutoModeJSON());
         this.subHandlers.put("json_generic", new GenericDataJSON());
+        this.subHandlers.put("json_notification-archive", new NotificationArchiveJSON());
 
         /* JSON PUSH API */
         this.subHandlers.put("post_change-device-status", new ChangeDeviceJSON());
         this.subHandlers.put("post_change-automode", new ChangeAutoModeJSON());
+        this.subHandlers.put("post_execute-stem-command", new ExecuteStemCommandJSON());
     }
 
 }

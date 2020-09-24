@@ -19,10 +19,10 @@ import java.util.Map;
 
 public class JSONTemplate implements IHtmlTemplate {
 
-    private String generatedPage = "";
+    private String generatedPage;
 
     public JSONTemplate() {
-        this.generatedPage = "";
+        this.generatedPage = new JSONObject().put("error", 404).toString();
     }
 
 
