@@ -14,12 +14,13 @@ package de.linzn.homeWebApp.api.jsonapi.get;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.modules.notificationModule.archive.NotificationArchiveObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,17 +30,19 @@ public class NotificationArchiveJSON implements IResponseHandler {
 
         Format dateFormat = new SimpleDateFormat("EEEE d MMMMM yyyy", Locale.GERMANY);
 
+        List<NotificationArchiveObject> list = STEMSystemApp.getInstance().getNotificationModule().getNotificationArchive().getLastNotifications();
+
         JSONArray jsonArray = new JSONArray();
-
-        // loop with notify start todo add notification module
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", 1);
-        jsonObject.put("source", "Heizung");
-        jsonObject.put("notification", "Test123");
-        jsonObject.put("date", dateFormat.format(new Date()));
-
-        jsonArray.put(jsonObject);
-        // loop with notify stop
+        int i = 1;
+        for (NotificationArchiveObject notificationArchiveObject : list) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", i);
+            jsonObject.put("source", notificationArchiveObject.source);
+            jsonObject.put("notification", notificationArchiveObject.notification);
+            jsonObject.put("date", dateFormat.format(notificationArchiveObject.date));
+            jsonArray.put(jsonObject);
+            i++;
+        }
 
         JSONTemplate emptyPage = new JSONTemplate();
 
