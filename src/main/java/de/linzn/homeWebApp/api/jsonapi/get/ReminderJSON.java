@@ -11,12 +11,12 @@
 
 package de.linzn.homeWebApp.api.jsonapi.get;
 
+import de.linzn.calender.CalenderPlugin;
+import de.linzn.calender.objects.ICalendarType;
+import de.linzn.calender.objects.TrashType;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
-import de.linzn.trashCalender.TrashCalenderPlugin;
-import de.linzn.trashCalender.objects.ICalendarType;
-import de.linzn.trashCalender.objects.TrashType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,7 +31,7 @@ public class ReminderJSON implements IResponseHandler {
     public IHtmlTemplate buildResponse(List<String> inputList) {
         JSONArray jsonArray = new JSONArray();
 
-        List<ICalendarType> iCalendarTypes = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getCalenderEntriesList(new Date());
+        List<ICalendarType> iCalendarTypes = CalenderPlugin.calenderPlugin.getCalendarManager().getCalenderEntriesList(new Date());
 
         for (ICalendarType iCalendarType : iCalendarTypes) {
             Format dateFormat = new SimpleDateFormat("EEEE d MMMMM yyyy", Locale.GERMANY);

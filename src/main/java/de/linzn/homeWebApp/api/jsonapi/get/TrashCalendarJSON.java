@@ -11,12 +11,12 @@
 
 package de.linzn.homeWebApp.api.jsonapi.get;
 
+import de.linzn.calender.CalenderPlugin;
+import de.linzn.calender.objects.ICalendarType;
+import de.linzn.calender.objects.TrashType;
 import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
-import de.linzn.trashCalender.TrashCalenderPlugin;
-import de.linzn.trashCalender.objects.ICalendarType;
-import de.linzn.trashCalender.objects.TrashType;
 import org.json.JSONObject;
 
 import java.text.Format;
@@ -30,10 +30,10 @@ public class TrashCalendarJSON implements IResponseHandler {
         JSONObject jsonObject = new JSONObject();
         Format dateFormat = new SimpleDateFormat("EEEE d MMMMM yyyy", Locale.GERMANY);
 
-        ICalendarType blackTrash = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getNextTrash(TrashType.BLACK);
-        ICalendarType greenTrash = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getNextTrash(TrashType.GREEN);
-        ICalendarType yellowTrash = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getNextTrash(TrashType.YELLOW);
-        ICalendarType blueTrash = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getNextTrash(TrashType.BLUE);
+        ICalendarType blackTrash = CalenderPlugin.calenderPlugin.getCalendarManager().getNextTrash(TrashType.BLACK);
+        ICalendarType greenTrash = CalenderPlugin.calenderPlugin.getCalendarManager().getNextTrash(TrashType.GREEN);
+        ICalendarType yellowTrash = CalenderPlugin.calenderPlugin.getCalendarManager().getNextTrash(TrashType.YELLOW);
+        ICalendarType blueTrash = CalenderPlugin.calenderPlugin.getCalendarManager().getNextTrash(TrashType.BLUE);
 
 
         JSONObject blackTrashJson = new JSONObject();

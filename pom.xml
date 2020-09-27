@@ -80,7 +80,7 @@
         </dependency>
         <dependency>
             <groupId>de.stem.plugins</groupId>
-            <artifactId>trash-calender</artifactId>
+            <artifactId>calender</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>
