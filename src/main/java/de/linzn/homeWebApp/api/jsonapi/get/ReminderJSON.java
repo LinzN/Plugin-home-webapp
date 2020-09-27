@@ -15,7 +15,7 @@ import de.linzn.homeWebApp.core.IResponseHandler;
 import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
 import de.linzn.trashCalender.TrashCalenderPlugin;
-import de.linzn.trashCalender.objects.ITrash;
+import de.linzn.trashCalender.objects.ICalendarType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,15 +30,15 @@ public class ReminderJSON implements IResponseHandler {
     public IHtmlTemplate buildResponse(List<String> inputList) {
         JSONArray jsonArray = new JSONArray();
 
-        List<ITrash> iTrashList = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getTrashList(new Date());
+        List<ICalendarType> iCalendarTypes = TrashCalenderPlugin.trashCalenderPlugin.getTrashCalendar().getCalenderEntriesList(new Date());
 
-        for (ITrash iTrash : iTrashList) {
+        for (ICalendarType iCalendarType : iCalendarTypes) {
             Format dateFormat = new SimpleDateFormat("EEEE d MMMMM yyyy", Locale.GERMANY);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("reminderType", "trash");
-            jsonObject.put("name", iTrash.getName());
-            jsonObject.put("date", dateFormat.format(iTrash.getDate()));
-            jsonObject.put("type", iTrash.getType().name());
+            jsonObject.put("name", iCalendarType.getName());
+            jsonObject.put("date", dateFormat.format(iCalendarType.getDate()));
+            jsonObject.put("type", iCalendarType.getType().name());
             jsonArray.put(jsonObject);
         }
         JSONTemplate emptyPage = new JSONTemplate();
