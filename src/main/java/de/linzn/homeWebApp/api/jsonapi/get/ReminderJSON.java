@@ -16,6 +16,7 @@ import de.linzn.homeWebApp.core.htmlTemplates.IHtmlTemplate;
 import de.linzn.homeWebApp.core.htmlTemplates.JSONTemplate;
 import de.linzn.trashCalender.TrashCalenderPlugin;
 import de.linzn.trashCalender.objects.ICalendarType;
+import de.linzn.trashCalender.objects.TrashType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,8 +35,15 @@ public class ReminderJSON implements IResponseHandler {
 
         for (ICalendarType iCalendarType : iCalendarTypes) {
             Format dateFormat = new SimpleDateFormat("EEEE d MMMMM yyyy", Locale.GERMANY);
+
+            String reminderType = "trash";
+
+            if (iCalendarType.getType() == TrashType.OTHER) {
+                reminderType = "other";
+            }
+
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("reminderType", "trash");
+            jsonObject.put("reminderType", reminderType);
             jsonObject.put("name", iCalendarType.getName());
             jsonObject.put("date", dateFormat.format(iCalendarType.getDate()));
             jsonObject.put("type", iCalendarType.getType().name());
